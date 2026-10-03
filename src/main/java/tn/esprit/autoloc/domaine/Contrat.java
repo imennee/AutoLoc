@@ -3,6 +3,8 @@ package tn.esprit.autoloc.domaine;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -18,4 +20,8 @@ public class Contrat {
     private LocalDate dateSignature;
     private Double montantTotal;
     private Boolean valide;
+    @OneToOne
+    Reservation reservation;
+    @OneToMany(mappedBy ="contrat",cascade = CascadeType.ALL)
+    List<Paiment> plist= new ArrayList<>();
 }
